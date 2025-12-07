@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Class 12 - Resource Hub</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --youtube: #ef4444;
+            --drive: #10b981;
+            --whatsapp: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Search Bar Styling */
+        .search-container {
+            margin-bottom: 2rem;
+        }
+
+        #searchInput {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--card-bg);
+            background-color: var(--card-bg);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #searchInput:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--card-bg);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: #263346;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--text-secondary);
+        }
+
+        .card.type-youtube::before { background-color: var(--youtube); }
+        .card.type-drive::before { background-color: var(--drive); }
+        .card.type-whatsapp::before { background-color: var(--whatsapp); }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Chemistry 12 Resource Hub</h1>
+        <p>A centralized dashboard for U-ThinkCrazy NEB Resources</p>
+        <br>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search lectures, topics, or dates (e.g., 'Haloalkane', 'Jan-27')...">
+        </div>
+    </header>
+
+    <div id="app" class="main-container">
+        </div>
+
+    <script>
+        // Data Structure
+        const data = [
+            {
+                section: "1. Live Session (Rohan Sir & Ram Sir) 🔴",
+                type: "youtube",
+                items: [
+                    { title: "Jan-27 | Applied Chemistry | Pulp and Paper", url: "https://youtu.be/JrW0Mi8-KeY?si=id0_gHtMTFxm2tRl" },
+                    { title: "Jan-28 | Applied Chemistry | Cement", url: "https://youtu.be/eL1rHenuFkA?si=QssVJiJMecDHavtS" },
+                    { title: "Jan-30 | Applied Chemistry", url: "https://youtu.be/3dU49uH7qNw?si=vIQq7JRXmTq-A614" },
+                    { title: "Jan-31 | Applied Chemistry", url: "https://youtu.be/Ajx5gADRdW8?si=6o94OS4DjcDDR4gO" },
+                    { title: "Feb 04 | Nuclear Chem & Radioactivity", url: "https://youtu.be/CpKnKSp_UeE?si=GOQTMK4-gpYENEae" },
+                    { title: "Feb 05 | Nuclear Chem & Radioactivity", url: "https://youtu.be/a7jNj-s9k9Y" },
+                    { title: "Feb-06 | Organic | Aldehyde & Ketone", url: "https://youtu.be/cf1quGPx67k?si=MBNRXxCxCpGVATeD" },
+                    { title: "Feb-07 | Organic | Basic of Organic Chem", url: "https://youtu.be/X2MKsYhWCLw?si=LL_GzAb6GJt2yY2-" },
+                    { title: "Feb-08 | Organic | Basic of Organic Chem", url: "https://youtu.be/aVsiW9gb4cY?si=2yflvCGDLjnRtQFj" },
+                    { title: "Feb-09 | Applied | Imp Questions", url: "https://youtu.be/P9Zm__9WxdA?si=SrQ2KAjDMA_scWkn" },
+                    { title: "Feb-10 | Applied | Polymers", url: "https://youtu.be/oWUrR8mKB5w?si=R8zDZMcD-5J74Mrg" },
+                    { title: "Feb-11 | Chemical Kinetics", url: "https://youtu.be/i9IrzafEg04?si=srvnBs6yciIjTYbE" },
+                    { title: "Feb-12 | Chemical Kinetics", url: "https://youtu.be/LQ339OHsIc0?si=A001DO61e2PE5FvQ" },
+                    { title: "Feb-13 | Chemical Kinetics", url: "https://youtu.be/xaR_1LQ4g-8?si=MJmarrI02DrDg-_t" },
+                    { title: "Feb-16 | Chemical Kinetics", url: "https://youtu.be/ZvJZNDJnOMQ?si=47HZsOqffuEC-2Iu" },
+                    { title: "Feb-17 | Chemical Kinetics", url: "https://youtu.be/ryKoiY6yuAI?si=MHI1uwO-TsQyUjU-" },
+                    { title: "Feb-18 | Chemical reactions", url: "https://youtu.be/qdrKr5GPMuw?si=AuPVtXGnHU6H4Weo" },
+                    { title: "Feb-19 | Organic | Oxidation & Reduction", url: "https://youtu.be/ZyQ5tv9AKsA?si=s_zEclNJ3HIXIN4T" },
+                    { title: "Feb-20 | Organic | Chemical Reactions", url: "https://youtu.be/nOn1dTDEVl8?si=DECZ9R9TV2kxgBxO" },
+                    { title: "Feb-23 | Electrochemistry", url: "https://youtu.be/mGHTh2AdC9M?si=wMdpzlc2YvbA9dJb" },
+                    { title: "Feb-24 | Organic | Naming Reaction", url: "https://youtu.be/NJEemH6pn3U?si=V6tkc6nY-sYq3Leo" },
+                    { title: "Feb-25 | Inorganic chemistry", url: "https://youtu.be/TK-nzQEgTnc?si=SImW1NnrHa_z5LIu" },
+                    { title: "Feb-28 | Organic chemistry", url: "https://youtu.be/40rBVUSebuo?si=6hOHqBstm2561NvC" },
+                    { title: "Mar-03 | Organic Chemistry", url: "https://youtu.be/lJ2jyC6QZMw?si=VxLg6IYwDyMN5BWF" },
+                    { title: "Mar-04 | ElectroChemistry", url: "https://youtu.be/e8OE8VbP6Fk?si=_uMY3mLk7J8SGaKk" },
+                    { title: "Mar-05 | Iconic Equilibrium", url: "https://youtu.be/uv4x40Dfq-c?si=-5EAHCCn36VlIArV" },
+                    { title: "Mar-06 | Carboxylic Acid | Imp Questions", url: "https://youtu.be/5c_sjqitCxw?si=D39GKoF_-13dZZbW" },
+                    { title: "Mar-07 | Carboxylic Acid | Qs practice", url: "https://youtu.be/dEtNvulTi0A?si=tl-8bGVzLea5CJIA" },
+                    { title: "Mar-09 | Organic | Conversion", url: "https://youtu.be/eF23cmF3--U?si=rqLQ3t6UhiBI3I2T" },
+                    { title: "Mar-10 | Organic | Chemical Reactions", url: "https://youtu.be/f_vs3hK54Aw?si=80kKCc2oA6sriKjp" },
+                    { title: "Mar-11 | ORGANIC Chemistry", url: "https://youtu.be/RiSAXU1TWOQ?si=XWX12JbKg8dwaCu0" },
+                    { title: "Mar 16 | Nitrogen Compound | MCQ", url: "https://youtu.be/r4pQbQa_ThY?si=l63yGz0pEq-TB1OA" },
+                    { title: "Mar-19 | Organic | Nitro Compound", url: "https://youtu.be/DJ5QySeh8N0?si=Q67uaLsEt1nBXWvz" },
+                    { title: "Mar-20 | Organic | Nitro Compound", url: "https://youtu.be/7fUWR-nHAdc?si=_SsbUbQNSDrQMX4Y" },
+                    { title: "Mar-21 | Chemistry | Haloalkane", url: "https://youtu.be/G4gze-mWLds?si=ZTx3LpOnkitjwS6w" },
+                    { title: "Mar-24 | Organic | Imp Questions", url: "https://youtu.be/v2nP-IBCe-Y?si=ZuVBxPz-UiNjG1dc" },
+                    { title: "Mar-25 | Organic Chemistry", url: "https://youtu.be/fViBP8SqwM0?si=Xv9LQI71wPZkWGON" },
+                    { title: "Mar-26 | Ionic Equilibrium", url: "https://youtu.be/cbbhk0WQGP0?si=wCtbB-Lm7R9sg6by" },
+                    { title: "Mar-27 | Ionic Equilibrium", url: "https://youtu.be/pvtJOpJnS8E?si=nAzOy5tjcgClcHPf" },
+                    { title: "Mar 28 | lonic Equilibrium", url: "https://youtu.be/YAS9JarPqJY" },
+                    { title: "Mar-30 | Organic | Ionic Equilibrium", url: "https://youtu.be/SbI43xy6ErI?si=PiugVfuvKzUrgCkQ" },
+                    { title: "Mar-31 | Ionic Equilibrium", url: "https://youtu.be/z8fiUEV9yZo?si=kw4ZLizPujw23eqO" },
+                    { title: "Mar-01 | Thermodynamic", url: "https://youtu.be/S_PmI2EGixo?si=ylCjj8gEkVGY-Ixi" },
+                    { title: "Apr-02 | Thermodynamic", url: "https://youtu.be/zJConRJr6Pw?si=Ohak9bmGhixy-lBr" },
+                    { title: "Apr-03 | Thermodynamic", url: "https://youtu.be/WVbGT1qHiCk?si=YjX4-UuWCZSEG0m-" },
+                    { title: "Apr-04 | Thermodynamic", url: "https://youtu.be/6KfwZcTUx0A?si=preOtjolRHZfxQLN" },
+                    { title: "Apr-06 | Volumetric Analysis", url: "https://youtu.be/db5VnfhZaBk?si=rvj7gvodto3x0Qpg" },
+                    { title: "Apr-07 | Volumetric Analytics", url: "https://youtu.be/hCC65W8Ehnc?si=OjpYVDv5Td_qiWi2" },
+                    { title: "Apr-08 | Volumetric Analytics", url: "https://youtu.be/qjb-Tv9IB4g?si=fHsmZqz0mLNl-ShD" }
+                ]
+            },
+            {
+                section: "2. Aashish Sir's Lectures",
+                type: "youtube",
+                items: [
+                    { title: "Jan-07 | Organic | Nomenclature 01", url: "https://youtu.be/UsEZtz_wUHI?si=mDPuenw4a6Fy9yGc" },
+                    { title: "Jan-08 | Organic | Aromatic Nomenclature 02", url: "https://youtu.be/9qrdNBwGIPY?si=-LIQ9Qg-RLGXjsbg" },
+                    { title: "Jan-09 | Organic | Ether 03", url: "https://youtu.be/6483JL_qtKM?si=oKsagC0AKGSIBar3" },
+                    { title: "Jan-11 | Organic | Alcohol 01", url: "https://youtu.be/rvwhThNpEME?si=VR9NyQI4HcPy2yDI" },
+                    { title: "Jan-12 | Organic | Alcohol 01 (Part 2)", url: "https://youtu.be/x9Am5yoMxDo?si=gtP43I_KUy25Lta3" },
+                    { title: "Jan-13 | Organic | Alcohol 03", url: "https://youtu.be/Qv6jEE1MKGg?si=dtucHksI3uACAQfV" },
+                    { title: "Jan-14 | Organic | Alcohol Chem Properties", url: "https://youtu.be/ee3Weio5ako?si=L189HNXhgU2tD7pE" },
+                    { title: "Jan-15 | Organic | Phenol 01", url: "https://youtu.be/wPjdWprpr58?si=I_CqlMWkaP3enwjy" },
+                    { title: "Jan-16 | Organic | Phenol", url: "https://youtu.be/op6IprJtfXM?si=HMiuPgr8-bSDEEBP" },
+                    { title: "Jan-17 | Organic | Chemical properties 01", url: "https://youtu.be/Y-bZUAbwvpw?si=pDHcbII7cF42tNce" },
+                    { title: "Jan-19 | Organic | Fever Class", url: "https://youtu.be/y7zKisSJtfU?si=tUcYitSuNC9vpGDd" },
+                    { title: "Jan-21 | Chemical properties 02", url: "https://youtu.be/ol7HNhhF6fI?si=jbyjE0lb3X3kLbxc" },
+                    { title: "Jan-23 | Organic | Aldehyde & Ketone", url: "https://youtu.be/GzKKSmwseGU?si=8M2COLYPcL4q2THi" },
+                    { title: "Jan-24 | Organic | Aldehyde & Ketone", url: "https://youtu.be/WWYB7U84T88?si=6k3uNm-mhVZfDDN8" },
+                    { title: "Feb-15 | Organic | Aldehyde & Ketone", url: "https://youtu.be/XvtQ43NGjBU?si=g-Ro0AvmswhEwayG" },
+                    { title: "Feb-21 | Organic | Carboxylic Acid", url: "https://youtu.be/WGAwOdGN4rQ?si=HC2i1wQH0UfwQrVP" },
+                    { title: "Feb-22 | Organic | Carboxylic Acid", url: "https://youtu.be/R9YKfDF-HM0?si=vuBncIEcG8YF2v1b" },
+                    { title: "Mar-01 | Organic | Nitro Compound", url: "https://youtu.be/0tpBJcGPUaE?si=LC2vaWBdr0_3vjE6" },
+                    { title: "Mar-17 | Organic | Nitro Compounds", url: "https://youtu.be/ecVJ83MZfHk?si=7umj33ssX7kp_bWM" },
+                    { title: "Mar-18 | Organic | Nitro Compounds", url: "https://youtu.be/u0LsMaDaly0?si=z9tU_gf5t_hpxv5q" },
+                    { title: "Mar-22 | Organic | Amines", url: "https://youtu.be/JDmlhx1DO_8?si=VZNMyqzlno6m2kLI" }
+                ]
+            },
+            {
+                section: "3. Inorganic Chemistry",
+                type: "youtube",
+                items: [
+                    { title: "Feb-22 | Organic | Carboxylic Acid", url: "https://youtu.be/R9YKfDF-HM0?si=vuBncIEcG8YF2v1b" },
+                    { title: "Feb-23 | Electrochemistry", url: "https://youtu.be/mGHTh2AdC9M?si=oz8ClnOK7_RXkeT4" }
+                ]
+            },
+            {
+                section: "4. Physical Chemistry",
+                type: "youtube",
+                items: [
+                    { title: "Mar 28 | Ionic Equilibrium", url: "https://youtu.be/YAS9JarPqJY" }
+                ]
+            },
+            {
+                section: "5. Organic Chemistry",
+                type: "youtube",
+                items: [
+                    { title: "Day 01 | Haloalkane & Haloarenes", url: "https://youtu.be/B4VhWHb4aeQ?si=BIuaZSXwTejGrjLJ" },
+                    { title: "Day 02 | Haloalkane & Haloarenes", url: "https://youtu.be/Bu7blvMlsSw?si=2gnoVDngyb8Iz1MT" },
+                    { title: "Day 03 | Haloalkane & Haloarenes", url: "https://youtu.be/RTxuTLzzCOo?si=_hPGmGNsMBEYcOr3" },
+                    { title: "Day 04 | Haloalkane & Haloarenes", url: "https://youtu.be/JY8aC03ngPc?si=xeuKdRIZ4KyvsUMS" },
+                    { title: "Day 05 | Haloalkane & Haloarenes", url: "https://youtu.be/qx4dXOsuLAw?si=eBg0odbXnOHwZC4G" },
+                    { title: "Day 06 | Haloalkane & Haloarenes", url: "https://youtu.be/jF-MAYZrDWc?si=NqD6rst8f5J4WZWa" },
+                    { title: "Day 07 | Haloalkane & Haloarenes", url: "https://youtu.be/ZWUTyil_dSM?si=g5qoNhjlQJ6q-Emp" },
+                    { title: "Day 08 | Haloalkane & Haloarenes", url: "https://youtu.be/Ye1xY33SzxA?si=SJQMowXq2-mBIah5" },
+                    { title: "Day 09 | Haloalkane & Haloarenes", url: "https://youtu.be/0af6XnGG2No?si=T1T4fslsqW-GxUnG" },
+                    { title: "Day 01 | Alcohol and Phenol", url: "https://youtu.be/ts_U5aFQucg?si=Nb8eckOpu96qt2-u" },
+                    { title: "Day 02 | Alcohol and Phenol", url: "https://youtu.be/EWlDU9gdI0E?si=Z1MWdo1RykexUXaW" },
+                    { title: "Day 03 | Alcohol and Phenol", url: "https://youtu.be/bwf97jb1trg?si=NDuRHAxpOmjT3B2M" },
+                    { title: "Day 04 | Alcohol and Phenol", url: "https://youtu.be/aST3JBR8xb8?si=8xy3Dzm56K1b65Uf" },
+                    { title: "Day 05 | Alcohol and Phenol", url: "https://youtu.be/NDAvEf9X_Jo?si=NnlVOXDtdMrSHPvm" },
+                    { title: "Day 06 | Alcohol and Phenol", url: "https://youtu.be/KIWIAD3g1HE?si=KmXmmCL4PGGxtxZ_" },
+                    { title: "Day 07 | Alcohol and Phenol", url: "https://youtu.be/Vh9XJ7CpIF4?si=woFo5wUocHKqP_oI" },
+                    { title: "Day 08 | Alcohol and Phenol", url: "https://youtu.be/kGp7PNYr5aE?si=pBXTIEHis7nB5RCa" },
+                    { title: "Day 09 | Alcohol and Phenol", url: "https://youtu.be/woJVkEHNTVk?si=2k-lAK1NdYWTKYPF" },
+                    { title: "Day 10 | Alcohol And Phenol", url: "https://youtu.be/OFB28aUmoq0?si=uYzcUDI7iOpNYIwj" },
+                    { title: "Day 01 | Aldehydes and ketones", url: "https://youtu.be/JwgvcF7-tg4?si=o00DESWmDcsANXEg" },
+                    { title: "Day 02 | Aldehydes and ketones", url: "https://youtu.be/5_bL0_-zQWg?si=5DDcPu-G80T4311g" },
+                    { title: "Day 03 | Aldehydes and ketones", url: "https://youtu.be/eZgXKONUqfk?si=RXbt7YZouC15g6ps" },
+                    { title: "Day 04 | Aldehydes and ketones", url: "https://youtu.be/TAhdOTY4oDg?si=QARCaaSwnHRvf73e" },
+                    { title: "Day 05 | Aldehydes and ketones", url: "https://youtu.be/imD7Xe0I3xU?si=FGJRWJP933epYnb0" },
+                    { title: "Day 06 | Aldehydes and ketones", url: "https://youtu.be/1nVfvpjJnfw?si=edPjCCTyt5QPzrD-" },
+                    { title: "Day 01 | Nitro Compound", url: "https://youtu.be/HnGGhf4L-jI?si=uju50CMirCouG3IF" },
+                    { title: "Day 02 | Nitro Compound", url: "https://youtu.be/n_jHk1-Jsmo?si=kcPY7HMC8o8okrtw" },
+                    { title: "Day 01 | Question Discussion", url: "https://youtu.be/tLvpSBFDTIk?si=q9QuzFKd0-5KLo7I" },
+                    { title: "Day 01 | Amines", url: "https://youtu.be/hE5ZmGdmZ5U?si=0TeFw6VtZzSyDjgw" },
+                    { title: "Day 02 | Amines", url: "https://youtu.be/Lpj2WZdxodg?si=1xk2djhDenjblsrD" },
+                    { title: "Day 03 | Amines", url: "https://youtu.be/rf49zHqVKwo?si=AnEr80g7Tay8BGI5" },
+                    { title: "Day 04 | Amines", url: "https://youtu.be/CGiRiMgHCzo?si=WilrDJDLzUA6YIRz" },
+                    { title: "Day 01 | Ether", url: "https://youtu.be/NWZjyieMuwc?si=iGboxRDB83nJUyCA" },
+                    { title: "Day 01 | Carboxylic Acids", url: "https://youtu.be/myli5pBo5dU?si=BHtMUCeX8HC4M1Gn" },
+                    { title: "Day 02 | Carboxylic Acids", url: "https://youtu.be/_aepJZOLanM?si=z6vATsHZYw-nfRbP" }
+                ]
+            },
+            {
+                section: "6. NG Class Recordings (Archive)",
+                type: "youtube",
+                items: [
+                    { title: "Aug 05 | Volumetric Analysis 01", url: "https://youtu.be/020D8vHJmRk" },
+                    { title: "Aug 06 | Volumetric Analysis 02", url: "https://youtu.be/9KL9j3BHmXI" },
+                    { title: "Aug 07 | Volumetric Analysis 03", url: "https://youtu.be/0YgGbjZgc3k" },
+                    { title: "Aug 08 | Volumetric Analysis 04", url: "https://youtu.be/e6hRZlztrJg" },
+                    { title: "Aug 10 | Volumetric Analysis 05", url: "https://youtu.be/zj7oz1bbpgo" },
+                    { title: "Aug 11 | Volumetric Analysis 06", url: "https://youtu.be/9diotc4vyqY" },
+                    { title: "Aug 12 | Ionic equilibrium 01", url: "https://youtu.be/O0Nc-q-qXnw" },
+                    { title: "Aug 13 | Calculation of PH/POH 02", url: "https://youtu.be/5LnidfdAY6o" },
+                    { title: "Aug 14 | pH Calculations", url: "https://youtu.be/113JvY5ZSkg" },
+                    { title: "Aug 15 | Solubility Calculation", url: "https://youtu.be/KgD97gT0NsQ" },
+                    { title: "Aug 16 | Phosphoric Acid", url: "https://youtu.be/s7OxQnvykKI" },
+                    { title: "Aug 17 | Ionic equillibrium 03", url: "https://youtu.be/Lol_hGiRQRc" },
+                    { title: "Aug 18 | Buffer & Kinetics 04", url: "https://youtu.be/DrrXYIzhDB4" },
+                    { title: "Aug 19 | Chemical Kinetics 02", url: "https://youtu.be/4JKyyMihNWc" },
+                    { title: "Aug 20 | Pseudounimolecular 03", url: "https://youtu.be/AFMK-EK_ois" },
+                    { title: "Aug 21 | Profile diagram & Thermo 04", url: "https://youtu.be/0vsEAiLgSkQ" },
+                    { title: "Aug 22 | First law of Thermo", url: "https://youtu.be/OwN-1ppYImc" },
+                    { title: "Aug 23 | QAD | Set 2079", url: "https://youtu.be/r-imPdDiC28" },
+                    { title: "Aug 24 | 2nd law Thermo, Entropy", url: "https://youtu.be/BeDy4K9zEAY" },
+                    { title: "Aug 25 | Electro Chemistry 01", url: "https://youtu.be/brIUfRtuet4" },
+                    { title: "Aug 26 | Electrode potential 02", url: "https://youtu.be/l8UbuuNe3zk" },
+                    { title: "Aug 27 | Haloalkane 01", url: "https://youtu.be/79vmbTshVZU" },
+                    { title: "Aug 28 | Haloalkane/Chloroform 02", url: "https://youtu.be/BKvurkjJlSI" },
+                    { title: "Aug 29 | Alcohol 01", url: "https://youtu.be/ljBSLGTelis" },
+                    { title: "Aug 30 | Physical Calc | Phenol/Ether", url: "https://youtu.be/rSxKjwN9Ntk" },
+                    { title: "Aug 31 | Phenol and ether 01", url: "https://youtu.be/FGC9bwucmdo" },
+                    { title: "Sep 01 | Phenol, Aldehyde, Ketone", url: "https://youtu.be/2Tqnl4DPXlo" },
+                    { title: "Sep 02 | Aldehyde, Ketone, Carboylic", url: "https://youtu.be/2g2OXmfT0vk" },
+                    { title: "Sep 03 | Carboxylic Acid 01", url: "https://youtu.be/FSIwg34xPUY" },
+                    { title: "Sep 04 | Heavy Metals", url: "https://youtu.be/A2mvMYkcxnE" },
+                    { title: "Sep 04 | Aldehyde, Ketone, Carboylic", url: "https://youtu.be/Zv1utvsFaaA" },
+                    { title: "Sep 05 | Nitro-Compound & Amine", url: "https://youtu.be/e9QNy1RBhsI" },
+                    { title: "Sep 06 | Nitro Compound & Amine", url: "https://youtu.be/ZLBCivXFpSg" },
+                    { title: "Sep 07 | Chem in Service of Mankind", url: "https://youtu.be/cXaU9EoF_7Q" },
+                    { title: "Sep 08 | Heavy Metals", url: "https://youtu.be/WknOZ1GvSh0" },
+                    { title: "Sep 11 | Zinc", url: "https://youtu.be/GrUA_0ZRxvE" },
+                    { title: "Sep 12 | Mercury", url: "https://youtu.be/A-pARnIn3PE" },
+                    { title: "Sep 13 | Iron", url: "https://youtu.be/kbgf6BawjVU" },
+                    { title: "Sep 14 | Silver", url: "https://youtu.be/jCSauMLNRMY" },
+                    { title: "Sep 16 | Cement | Paper & Pulp", url: "https://youtu.be/D5KauihLLlk" }
+                ]
+            },
+            {
+                section: "7. Notes (Drive Links) ✍️",
+                type: "drive",
+                items: [
+                    { title: "Chemistry Notes (Folder)", url: "https://drive.google.com/drive/folders/1R0sAzF0PreXvxvMBHwK8xxh8z72d_bSo?usp=sharing" },
+                    { title: "Chemistry NG 2082 (Folder)", url: "https://drive.google.com/drive/folders/1UUF3-nfD0GfPOJNBYUF-wZ2UVdY88UNp?usp=drive_link" }
+                ]
+            },
+            {
+                section: "8. Group Link 📲",
+                type: "whatsapp",
+                items: [
+                    { title: "Join Whatsapp Group", url: "https://chat.whatsapp.com/ISQXMepQdHAA5xr9bqXk3v" }
+                ]
+            }
+        ];
+
+        const app = document.getElementById('app');
+        const searchInput = document.getElementById('searchInput');
+
+        function getTypeColor(type) {
+            if (type === 'youtube') return 'YouTube 📺';
+            if (type === 'drive') return 'Drive 📂';
+            if (type === 'whatsapp') return 'WhatsApp 💬';
+            return 'Link';
+        }
+
+        function render(filter = "") {
+            app.innerHTML = "";
+            const lowerFilter = filter.toLowerCase();
+
+            data.forEach(section => {
+                // Filter items based on search
+                const filteredItems = section.items.filter(item => 
+                    item.title.toLowerCase().includes(lowerFilter) || 
+                    section.section.toLowerCase().includes(lowerFilter)
+                );
+
+                if (filteredItems.length > 0) {
+                    // Create Section Header
+                    const sectionTitle = document.createElement('h2');
+                    sectionTitle.className = 'section-title';
+                    sectionTitle.innerText = section.section;
+                    app.appendChild(sectionTitle);
+
+                    // Create Grid
+                    const grid = document.createElement('div');
+                    grid.className = 'grid';
+
+                    filteredItems.forEach(item => {
+                        const card = document.createElement('a');
+                        card.href = item.url;
+                        card.target = "_blank";
+                        card.className = `card type-${section.type}`;
+                        
+                        card.innerHTML = `
+                            <div>
+                                <div class="card-title">${item.title}</div>
+                            </div>
+                            <div class="card-meta">
+                                <span>Click to Open ↗</span>
+                                <span class="badge">${getTypeColor(section.type)}</span>
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    });
+
+                    app.appendChild(grid);
+                }
+            });
+
+            if (app.innerHTML === "") {
+                app.innerHTML = `<div style="text-align:center; padding: 2rem; color: #94a3b8;">No results found for "${filter}"</div>`;
+            }
+        }
+
+        // Initial Render
+        render();
+
+        // Search Listener
+        searchInput.addEventListener('input', (e) => {
+            render(e.target.value);
+        });
+
+    </script>
+</body>
+</html>
